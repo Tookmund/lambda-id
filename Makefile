@@ -11,5 +11,5 @@ create-%: %.zip
 %.upload: %.zip
 	aws lambda update-function-code --function-name "$*" --zip-file "fileb://$<" > "$*.upload"
 
-%.zip: %.js node_modules package-lock.json
+%.zip: %.js
 	zip -r "$@" $^

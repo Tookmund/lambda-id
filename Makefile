@@ -6,5 +6,5 @@ $(FUNCTION): $(FUNCTION).upload
 $(FUNCTION).upload: $(FUNCTION).zip
 	aws lambda update-function-code --function-name "$(FUNCTION)" --zip-file "fileb://$(FUNCTION).zip" > "$(FUNCTION).upload"
 
-$(FUNCTION).zip: index.js node_modules package-lock.json
+$(FUNCTION).zip: $(FUNCTION).js node_modules package-lock.json
 	zip -r "$(FUNCTION).zip" $^

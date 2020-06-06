@@ -15,8 +15,8 @@ exports.handler = async function(event, context) {
 	if (ids == null) {
 		let s3 = new AWS.S3();
 		let promise = s3.getObject({
-			"Bucket": "lambda-id",
-			"Key": "ids.json",
+			"Bucket": process.env.S3_BUCKET,
+			"Key": process.env.S3_KEY
 		}).promise();
 		promise.then(
 			function(data) {

@@ -1,4 +1,6 @@
 node_modules
 *.zip
-hello-world*
+*.upload
 role.mk
+hello-world
+404

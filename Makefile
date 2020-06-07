@@ -5,11 +5,11 @@ create-%: %.zip
 	aws lambda create-function --function-name "$*" --runtime nodejs12.x \
 		--role "$(ROLE)" --handler "$*.handler" --zip-file "fileb://$<"
 
-%: %.upload
-	aws lambda invoke --function-name "$@" "$@"
+invoke-%: %
+	aws lambda invoke --function-name "$*" "$@"
 
-%.upload: %.zip
-	aws lambda update-function-code --function-name "$*" --zip-file "fileb://$<" > "$*.upload"
+%: %.zip
+	aws lambda update-function-code --function-name "$*" --zip-file "fileb://$<" > "$*"
 
 %.zip: %.js
 	zip -r "$@" $^

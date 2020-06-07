@@ -1,5 +1,4 @@
 include role.mk
-.PHONY: create-%
 
 create-%: %.zip
 	aws lambda create-function --function-name "$*" --runtime nodejs12.x \
